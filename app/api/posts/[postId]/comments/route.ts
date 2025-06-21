@@ -1,4 +1,3 @@
-// app/api/posts/[postId]/comments/route.ts
 import { NextResponse, NextRequest } from "next/server";
 import { addCommentToDb } from "@/lib/data";
 

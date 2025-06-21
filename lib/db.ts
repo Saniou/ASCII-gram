@@ -1,4 +1,3 @@
-// lib/db.ts
 import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";
 import { join } from "path";
@@ -16,7 +15,6 @@ export type Schema = {
 const file    = join(process.cwd(), "db.json");
 const adapter = new JSONFile<Schema>(file);
 
-// **Here** we give Low the default shape of our database
 export const db = new Low<Schema>(adapter, {
   users:    [],
   posts:    [],
@@ -24,10 +22,7 @@ export const db = new Low<Schema>(adapter, {
 });
 
 export async function initDB() {
-  // This read will create `db.data` with the defaults above if the file is missing/empty
   await db.read();
-  // Just to be safe, re-apply defaults if needed
   db.data ||= { users: [], posts: [], usernames: {} };
-  // And write it back out so that db.json now exists
   await db.write();
 }

@@ -14,7 +14,6 @@ export default function LoginForm() {
     setError("");
 
     const formData = new FormData(e.currentTarget);
-    // Робимо POST-запит до API-роуту
     const res = await fetch("/api/auth/login", {
       method: "POST",
       body: formData,

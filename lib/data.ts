@@ -1,4 +1,3 @@
-// lib/data.ts
 import prisma from "./prisma";
 
 export type CommentRecord = {
@@ -19,17 +18,13 @@ export type PostRecord = {
   user_liked: boolean;
 };
 
-/**
- * Забирає з БД всі пости та форматує їх під клієнт,
- * враховуючи, кому вони належать і чи цей userId вже лайкав.
- */
 export async function getPosts(userId?: string): Promise<PostRecord[]> {
-  // підтягуємо пости з усіма лайками і коментарями
+
   const posts = await prisma.post.findMany({
     orderBy: { created_at: "desc" },
     include: {
       author:   { select: { username: true } },
-      likes:    true,  // масив { userId, postId, id }
+      likes:    true,
       comments: {
         orderBy: { created_at: "asc" },
         include: { author: { select: { username: true } } },
@@ -43,7 +38,6 @@ export async function getPosts(userId?: string): Promise<PostRecord[]> {
     username:   p.author.username,
     created_at: p.created_at.toISOString(),
     likes:      p.likes.length,
-    // Якщо userId переданий — перевіряємо, чи є в likes запис з цим userId
     user_liked: userId
       ? p.likes.some((l) => l.userId === userId)
       : false,
@@ -57,9 +51,6 @@ export async function getPosts(userId?: string): Promise<PostRecord[]> {
   }));
 }
 
-/**
- * Toggle-лайк: створює або видаляє запис у таблиці Like.
- */
 export async function likePostInDb(postId: string, userId: string) {
   const existing = await prisma.like.findUnique({
     where: { userId_postId: { userId, postId } },
@@ -76,9 +67,6 @@ export async function likePostInDb(postId: string, userId: string) {
   }
 }
 
-/**
- * Створює новий пост.
- */
 export async function createPostInDb(userId: string, username: string, content: string) {
   const p = await prisma.post.create({
     data: { content, authorId: userId },
@@ -86,9 +74,6 @@ export async function createPostInDb(userId: string, username: string, content: 
   return p.id;
 }
 
-/**
- * Додає коментар.
- */
 export async function addCommentToDb(
   postId: string,
   userId: string,

@@ -3,12 +3,15 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Feed from "@/components/feed"
+import NeonLoader from "@/components/NeonLoader"
+import { fetchCurrentUser} from "@/lib/clientAuth";
 
 type User = { id: string; username: string; email: string }
 
 export default function HomePage() {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const [showLoader, setShowLoader] = useState(true);
   const router = useRouter()
 
   useEffect(() => {
@@ -31,26 +34,36 @@ export default function HomePage() {
     router.push("/login")
   }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-black text-green-400 flex items-center justify-center">
-        <div className="loading-spinner"></div>
-      </div>
-    )
+  function onLoaderFinish() {
+    fetchCurrentUser().then((u) => {
+      setUser(u);
+      setLoading(false);
+    });
   }
+
+  if (loading) {
+    return <NeonLoader duration={10000} onFinish={onLoaderFinish} />;
+  }
+
+  if (!user) {
+    return <p>Redirecting to login...</p>;
+  }
+
 
   if (!user) return null
 
   return (
     <div className="min-h-screen bg-black text-green-400 animate-fade-in">
       {/* Header */}
-      <header className="border-b border-green-400 sticky top-0 z-10 bg-black animate-slide-in-left">
+      <header className="border-b  border-green-400 sticky top-0 z-10 bg-black animate-slide-in-left">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <pre className="text-green-400 text-xs font-bold animate-typing">
-              {`█▀▀█ █▀▀ █▀▀ ░▀░ ░▀░
-█▄▄█ ▀▀█ █░░ ▀█▀ ▀█▀
-▀░░▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀`}
+            <pre className="text-green-400 text-xs font-bold leading-tight whitespace-pre">
+              {`    _    ____   ____ ___ ___       ____ ____      _    __  __        ___   ___  _
+   / \\  / ___| / ___|_ _|_ _|     / ___|  _ \\    / \\  |  \\/  |      / _ \\ / _ \\/ |
+  / _ \\ \\___ \\| |    | | | |_____| |  _| |_) |  / _ \\ | |\\/| |_____| | | | | | | |
+ / ___ \\ ___) | |___ | | | |_____| |_| |  _ <  / ___ \\| |  | |_____| |_| | |_| | |
+/_/   \\_\\____/ \\____|___|___|     \\____|_| \\_\\/_/   \\_\\_|  |_|      \\___/ \\___/|_|`}
             </pre>
             <span className="text-green-300 text-sm animate-slide-in-right">
               social

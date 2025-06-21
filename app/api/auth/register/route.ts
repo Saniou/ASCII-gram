@@ -1,4 +1,3 @@
-// app/api/auth/register/route.ts
 import { NextResponse, NextRequest } from "next/server";
 import { createUser, setUserSession } from "@/lib/auth";
 

@@ -1,4 +1,3 @@
-// app/api/auth/login/route.ts
 import { NextResponse, NextRequest } from "next/server";
 import { validateUser, setUserSession } from "@/lib/auth";
 
@@ -9,12 +8,11 @@ export async function POST(req: NextRequest) {
   const contentType = req.headers.get("content-type") || "";
 
   if (contentType.includes("application/json")) {
-    // Клієнт надіслав JSON
+
     const body = await req.json();
     username = (body.username as string) || undefined;
     password = (body.password as string) || undefined;
   } else {
-    // Клієнт надіслав FormData
     const form = await req.formData();
     username = form.get("username")?.toString();
     password = form.get("password")?.toString();

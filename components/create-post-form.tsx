@@ -1,4 +1,3 @@
-// components/create-post-form.tsx
 "use client";
 
 import { useState } from "react";
@@ -49,9 +48,9 @@ export default function CreatePostForm({ user }: CreatePostFormProps) {
    ( o.o ) 
     > ^ <
 
-Або просто напишіть звичайний текст!
+Or just write plain text!
 
-Приклади ASCII арту:
+Examples of ASCII art:
 ╔══════════════╗
 ║ Hello World! ║
 ╚══════════════╝
@@ -76,7 +75,6 @@ export default function CreatePostForm({ user }: CreatePostFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* textarea */}
       <div className="animate-slide-in-up">
         <label className="block text-sm mb-3 text-green-300">
           <span className="text-green-400">{">"}</span> POST_CONTENT:
@@ -89,14 +87,12 @@ export default function CreatePostForm({ user }: CreatePostFormProps) {
           required
           disabled={loading}
         />
-        {/* підказка і лічильник */}
         <div className="flex justify-between text-xs text-green-500 mt-1">
-          <div>&gt; Використовуйте ASCII символи для створення арту</div>
+          <div>&gt; Use ASCII characters to create art</div>
           <div>[{content.length}/1000]</div>
         </div>
       </div>
 
-      {/* кнопки CLEAR і PUBLISH */}
       <div className="flex justify-end space-x-4 animate-slide-in-up">
         <button
           type="button"

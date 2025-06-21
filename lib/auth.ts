@@ -1,4 +1,3 @@
-// lib/auth.ts
 import prisma from "./prisma";
 import { cookies } from "next/headers";
 

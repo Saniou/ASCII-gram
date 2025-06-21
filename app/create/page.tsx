@@ -1,4 +1,3 @@
-// app/create/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -39,23 +38,21 @@ export default function CreatePage() {
   }
 
   if (!user) {
-    return null; // якщо не залогінились — нічого не рендеримо
+    return null;
   }
 
   return (
     <div className="min-h-screen bg-black text-green-400 animate-fade-in">
       <div className="max-w-3xl mx-auto px-4 py-6">
         <div className="terminal-card p-8 space-y-6">
-          {/* Заголовок у вигляді ASCII */}
           <pre className="text-green-400 text-sm font-bold leading-tight animate-typing">
 {`╔═══════════════════════════════╗
 ║        CREATE NEW POST        ║
 ║     Share your ASCII art!     ║
 ╚═══════════════════════════════╝`}
           </pre>
-          {/* Інструкція та кнопка BACK */}
           <div className="flex justify-between text-xs text-green-300">
-            <div>&gt; Введіть ваш контент нижче</div>
+            <div>&gt; Enter your content below</div>
             <Link
               href="/"
               className="underline hover:text-green-100 transition-colors"
@@ -63,7 +60,6 @@ export default function CreatePage() {
               [BACK]
             </Link>
           </div>
-          {/* Форма */}
           <CreatePostForm user={user} />
         </div>
       </div>

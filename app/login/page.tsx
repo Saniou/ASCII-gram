@@ -14,14 +14,14 @@ export default function LoginPage() {
 ╚══════════════════════════╝`}
             </pre>
             <div className="text-green-300 text-sm animate-slide-in-up" style={{ animationDelay: "0.5s" }}>
-              <span className="text-green-400">{">"}</span> Введіть дані для входу
+              <span className="text-green-400">{">"}</span> Enter your login details
             </div>
           </div>
 
           <LoginForm />
 
           <div className="mt-6 text-center text-sm animate-slide-in-up" style={{ animationDelay: "0.7s" }}>
-            <span className="text-green-400">{">"}</span> Немає акаунта?{" "}
+            <span className="text-green-400">{">"}</span> Don't have an account?{" "}
             <Link href="/register" className="text-white hover:text-green-300 underline transition-colors duration-300">
               register --new-user
             </Link>

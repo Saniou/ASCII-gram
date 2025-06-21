@@ -1,11 +1,8 @@
-// app/api/posts/route.ts
 import { NextResponse, NextRequest } from "next/server";
 import { getPosts, createPostInDb } from "@/lib/data";
 
 export async function GET(request: NextRequest) {
-  // дістаємо поточного userId з куків
   const userId = request.cookies.get("userId")?.value;
-  // передаємо його в getPosts, щоб він міг порахувати user_liked
   const posts = await getPosts(userId);
   return NextResponse.json({ posts });
 }
