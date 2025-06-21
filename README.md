@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+```text
+    _    ____   ____ ___ ___       ____ ____      _    __  __        ___   ___  _ 
+   / \  / ___| / ___|_ _|_ _|     / ___|  _ \    / \  |  \/  |      / _ \ / _ \/ |
+  / _ \ \___ \| |    | | | |_____| |  _| |_) |  / _ \ | |\/| |_____| | | | | | | |
+ / ___ \ ___) | |___ | | | |_____| |_| |  _ <  / ___ \| |  | |_____| |_| | |_| | |
+/_/   \_\____/ \____|___|___|     \____|_| \_\/_/   \_\_|  |_|      \___/ \___/|_|
+ ╔════════════════════════════════════════════════════════════════╗
+ ║                  Welcome to ASCII.SOCIAL v001.0                  ║
+ ║  A retro-inspired social network where your art is text-based! ║
+ ╚════════════════════════════════════════════════════════════════╝
 
-## Getting Started
 
-First, run the development server:
+ 📜 **About**  
+   ASCII.SOCIAL transforms every keystroke into pixel-perfect artistry.  
+   Share your creativity, one character at a time.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+ 🚀 **Features**  
+   • **Create & Publish** — Craft multiline ASCII art, from simple emoticons  
+     to intricate illustrations, and post it for the world to admire.  
+   • **Like & Comment** — React to others’ masterpieces with ❤️ or 💬,  
+     and leave your thoughts directly in the thread.  
+   • **Live Feed** — Dive into an ever-evolving stream of text-based art.  
+   • **User Profiles** — Claim your unique handle (`@username`) and build  
+     your ASCII identity.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ 🛠 **Tech Stack**  
+   • **Next.js** (App Router + Server Actions)  
+   • **Prisma & NeonDB** for robust, lightning-fast storage  
+   • **Date-fns** for human-friendly timestamps  
+   • **Tailwind CSS** for sleek, neon-on-black terminal vibes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ 🎮 **Getting Started**  
+   1. **Clone** this repo  
+   2. **Install** dependencies with `npm install`  
+   3. **Configure** your `.env` with `DATABASE_URL` for NeonDB  
+   4. **Run** `npx prisma migrate dev --name init`  
+   5. **Launch** with `npm run dev` and surf ASCII.social!
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+ 💡 **Tips & Tricks**  
+   - Use monospace fonts to keep your art perfectly aligned.  
+   - Explore the community feed for inspiration.  
+   - Experiment with ASCII shading: `░▒▓█` for depth and drama.  
 
-## Learn More
+ 📫 **Contribute & Feedback**  
+   Pull requests, issues, and star ⭐ welcome!  
+   Let’s build this ASCII universe together.  
 
-To learn more about Next.js, take a look at the following resources:
+   ## 📦 Tech Stack (in detail)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🚀 Frontend  
+- **Next.js 15**  
+  - App Router ( `/app` directory ), React Server & Client Components  
+  - Server Actions (`"use server"`) for edge-efficient form handling  
+  - `next/navigation`, `next/headers` & built-in fetch for data fetching & routing  
+- **React 18**  
+  - Hooks (`useState`, `useEffect`) for interactive state & effects  
+  - Transition & streaming support under the hood  
+- **TypeScript**  
+  - Strict mode, path aliases (`@/lib`, `@/components`, etc.)  
+  - Fully typed props, API responses & Prisma models  
+- **Tailwind CSS v3**  
+  - JIT engine for lightning-fast utility generation  
+  - Custom terminal-style animations (typing, slide, blink)  
+  - Dark, neon-green-on-black theme via utility classes  
+- **PostCSS + Autoprefixer**  
+  - CSS transformations & vendor prefixing  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🗄️ Backend & Data  
+- **Prisma 6** (ORM)  
+  - Schema-first modeling of `User`, `Post`, `Like`, `Comment`  
+  - Migrations & type-safe client generated against NeonDB  
+- **NeonDB (PostgreSQL)**  
+  - Cloud-native, serverless Postgres  
+  - Zero-downtime schema migrations & high-performance queries  
+- **Next.js API Routes**  
+  - Fully typed `route.ts` handlers under `app/api/...`  
+  - Edge-compatible JSON and FormData parsing  
+- **Cookie-based sessions** via `next/headers`  
+  - `set-cookie` in Server Actions for `userId` session  
+  - `cookies()` in routes & server components  
 
-## Deploy on Vercel
+### 🔧 Utilities & Libraries  
+- **date-fns**  
+  - Human-friendly “time ago” formatting (`formatDistanceToNow`)  
+  - Ukrainian locale support (`date-fns/locale/uk`)  
+- **FormData API**  
+  - Zero-JS-bundler overhead form submissions in Server Actions  
+- **Math.random-based IDs**  
+  - Lightweight unique IDs for mock data (fallback to real UUIDs possible)  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🛠️ Tooling & Workflow  
+- **ESLint + Prettier** for consistent code style  
+- **TypeScript** for end-to-end type safety  
+- **Git + GitHub** for version control & collaboration  
+- **VS Code** recommended, with official Next.js & Tailwind extensions  
+- **npm / pnpm / yarn** (your choice) for package management  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+🎉 This stack gives you the best of both worlds: **React interactivity** with **Next.js performance**, **Prisma reliability** with **NeonDB scale**, all wrapped in a **terminal-retro UX** powered by **Tailwind CSS**.  
+
+---
+Made with ☕ + 🖥️ + ❤️ by the ASCII.social team.

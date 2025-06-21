@@ -2,6 +2,12 @@
 import prisma from "./prisma";
 import { cookies } from "next/headers";
 
+export interface User {
+  id: string;
+  username: string;
+  email: string;
+}
+
 export async function createUser(username: string, email: string, password: string) {
   const exists = await prisma.user.findFirst({
     where: { OR: [{ username }, { email }] },

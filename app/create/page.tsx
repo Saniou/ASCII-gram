@@ -8,28 +8,26 @@ import CreatePostForm from "@/components/create-post-form";
 import type { User } from "@/lib/auth";
 
 export default function CreatePage() {
-  const [user, setUser]     = useState<User | null>(null);
+  const [user, setUser]       = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
+  const router                = useRouter();
 
   useEffect(() => {
-    async function check() {
+    async function checkUser() {
       setLoading(true);
       try {
         const res = await fetch("/api/auth/me");
-        const { user } = await res.json();
-        if (!user) {
-          router.push("/login");
-        } else {
-          setUser(user);
-        }
+        if (!res.ok) throw new Error("Not authenticated");
+        const payload = await res.json();
+        if (!payload.user) throw new Error("No user");
+        setUser(payload.user as User);
       } catch {
         router.push("/login");
       } finally {
         setLoading(false);
       }
     }
-    check();
+    checkUser();
   }, [router]);
 
   if (loading) {
@@ -39,20 +37,23 @@ export default function CreatePage() {
       </div>
     );
   }
-  if (!user) return null;
+
+  if (!user) {
+    return null; // якщо не залогінились — нічого не рендеримо
+  }
 
   return (
     <div className="min-h-screen bg-black text-green-400 animate-fade-in">
       <div className="max-w-3xl mx-auto px-4 py-6">
         <div className="terminal-card p-8 space-y-6">
-          {/* ASCII-заголовок */}
+          {/* Заголовок у вигляді ASCII */}
           <pre className="text-green-400 text-sm font-bold leading-tight animate-typing">
 {`╔═══════════════════════════════╗
 ║        CREATE NEW POST        ║
 ║     Share your ASCII art!     ║
 ╚═══════════════════════════════╝`}
           </pre>
-          {/* Навігація назад */}
+          {/* Інструкція та кнопка BACK */}
           <div className="flex justify-between text-xs text-green-300">
             <div>&gt; Введіть ваш контент нижче</div>
             <Link
@@ -62,7 +63,6 @@ export default function CreatePage() {
               [BACK]
             </Link>
           </div>
-
           {/* Форма */}
           <CreatePostForm user={user} />
         </div>
