@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "id": "ytu959f1ynf",
+      "username": "Saaa",
+      "email": "krasulazr@gmail.com",
+      "password": "Sasa1717"
+    }
+  ],
+  "posts": [
+    {
+      "id": "vyypp5hgaji",
+      "userId": "user_1750527243052_s5vftc0uvfr",
+      "username": "Saaa",
+      "content": "fsfsdbsfdbv",
+      "created_at": "2025-06-21T17:55:01.151Z",
+      "likes": [
+        "user_1750527243052_s5vftc0uvfr",
+        "cmc6jxgmx0000v9ussnh7lo5d"
+      ],
+      "comments": [
+        {
+          "id": "y039s78p8rh",
+          "userId": "user_1750527243052_s5vftc0uvfr",
+          "content": "sdfbsdf",
+          "created_at": "2025-06-21T17:55:07.299Z"
+        },
+        {
+          "id": "baecfao9ver",
+          "userId": "user_1750527243052_s5vftc0uvfr",
+          "content": "fcgcg",
+          "created_at": "2025-06-21T17:59:38.977Z"
+        },
+        {
+          "id": "3puql2urnmy",
+          "userId": "cmc6jxgmx0000v9ussnh7lo5d",
+          "content": "fdsfd",
+          "created_at": "2025-06-21T18:08:01.771Z"
+        }
+      ]
+    },
+    {
+      "id": "ir42kq9p0hf",
+      "userId": "cmc6jxgmx0000v9ussnh7lo5d",
+      "username": "Saaa",
+      "content": "авваі",
+      "created_at": "2025-06-21T18:16:15.754Z",
+      "likes": [],
+      "comments": [
+        {
+          "id": "za7asks6ymr",
+          "userId": "cmc6jxgmx0000v9ussnh7lo5d",
+          "content": "фві",
+          "created_at": "2025-06-21T18:18:59.403Z"
+        }
+      ]
+    }
+  ],
+  "usernames": {}
+}

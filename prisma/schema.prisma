@@ -1,0 +1,57 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Тепер оголошуємо моделі (приклад із вашою схемою):
+model User {
+  id       String    @id @default(cuid())
+  username String    @unique
+  email    String    @unique
+  password String
+
+  posts    Post[]
+  comments Comment[]
+  likes    Like[]
+}
+
+model Post {
+  id         String    @id @default(cuid())
+  content    String
+  created_at DateTime  @default(now())
+
+  author     User      @relation(fields: [authorId], references: [id])
+  authorId   String
+
+  comments   Comment[]
+  likes      Like[]
+}
+
+model Like {
+  id     String @id @default(cuid())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
+
+  @@unique([userId, postId])
+}
+
+model Comment {
+  id         String   @id @default(cuid())
+  content    String
+  created_at DateTime @default(now())
+
+  author     User     @relation(fields: [authorId], references: [id])
+  authorId   String
+
+  post       Post     @relation(fields: [postId], references: [id])
+  postId     String
+}
