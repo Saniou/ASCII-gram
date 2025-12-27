@@ -179,15 +179,15 @@ export default function Post({ post, currentUser }: PostProps) {
           onClick={handleLike}
           className={`flex items-center space-x-2 text-sm ${liked ? "text-red-400" : "text-green-400"}`}
         >
-          <span>{liked ? "♥" : "♡"}</span>
-          <span>[{likeCount}]</span>
+          <span className="cursor-pointer">{liked ? "♥" : "♡"}</span>
+          <span className="cursor-pointer">[{likeCount}]</span>
         </button>
         <button
           onClick={() => setShowComments(v => !v)}
           className="flex items-center space-x-2 text-green-400 text-sm"
         >
-          <span>💬</span>
-          <span>[{comments.length}]</span>
+          <span className="cursor-pointer">💬</span>
+          <span className="cursor-pointer">[{comments.length}]</span>
         </button>
       </div>
 
@@ -218,14 +218,14 @@ export default function Post({ post, currentUser }: PostProps) {
                           onClick={() => toggleCommentLike(c.id, idx)}
                           className={`flex items-center space-x-1 text-sm ${c.userLiked ? "text-red-400" : "text-green-400"}`}
                         >
-                          <span>{c.userLiked ? "♥" : "♡"}</span>
+                          <span className="cursor-pointer">{c.userLiked ? "♥" : "♡"}</span>
                           <span>[{c.likesCount}]</span>
                         </button>
                         {/* Edit/Delete own comment */}
                         {isMe && (
                           <>
-                            <button onClick={() => startEdit(c)} className="text-yellow-400 text-xs hover:underline">Edit</button>
-                            <button onClick={() => deleteComment(c)} className="text-red-400 text-xs hover:underline">Delete</button>
+                            <button onClick={() => startEdit(c)} className="text-yellow-400 text-xs hover:underline cursor-pointer">Edit</button>
+                            <button onClick={() => deleteComment(c)} className="text-red-400 text-xs hover:underline cursor-pointer">Delete</button>
                           </>
                         )}
                       </div>

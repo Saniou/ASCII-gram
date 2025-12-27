@@ -15,7 +15,7 @@ interface FeedProps {
 }
 
 export default function Feed({ user }: FeedProps) {
-  const [posts, setPosts]     = useState<PostType[]>([]);
+  const [posts, setPosts] = useState<PostType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -56,6 +56,27 @@ export default function Feed({ user }: FeedProps) {
     <div className="relative min-h-screen bg-black text-green-400">
       <BackgroundAscii />
       <div className="relative z-10 max-w-3xl mx-auto px-4 py-6 space-y-6 animate-fade-in">
+
+        {/* 1) NEWS / UPDATES */}
+        <div className="animate-slide-in-up mb-8">
+          <Link href="/info4you" className="block terminal-card p-6 hover:bg-gray-900/30">
+            <div className="flex items-center space-x-4">
+              <div className="w-10 h-10 border border-green-400 flex items-center justify-center">
+                <span className="text-green-400 text-xl">📰</span>
+              </div>
+              <div>
+                <div className="text-green-300 text-sm">
+                  <span className="text-green-400">{">"}</span> open_updates()
+                </div>
+                <div className="text-green-500 text-xs mt-1">
+                  Latest news and release notes…
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+
+        {/* 2) CREATE */}
         <div className="animate-slide-in-up mb-8">
           <Link href="/create" className="block terminal-card p-6 hover:bg-gray-900/30">
             <div className="flex items-center space-x-4">
@@ -73,6 +94,7 @@ export default function Feed({ user }: FeedProps) {
             </div>
           </Link>
         </div>
+
         {loading ? (
           <div className="terminal-card p-6 text-center">
             <div className="loading-spinner mx-auto mb-4"></div>
